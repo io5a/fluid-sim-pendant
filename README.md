@@ -10,6 +10,10 @@ The 72-particle solver uses a staggered velocity grid, a free-surface pressure p
 2. Open this folder as the PlatformIO project.
 3. Build and upload the `seeed_xiao_nrf52840` environment.
 
+Normal Build and Upload actions default only to `seeed_xiao_nrf52840`, including `platformio run` and `platformio run --target upload --upload-port COM8`. The `fluid_sim_self_test` environment is explicit opt-in: it waits for serial commands and does not animate normally. Do not select that environment for everyday uploads; use the test runner below, which restores production firmware afterward.
+
+Run `pwsh -File tools/run-sim-tests.ps1 -CheckUploadConfigOnly` for a no-flash regression check that production is the sole default and self-test flags cannot leak into production. The same check runs before hardware tests.
+
 From the project root, run `pwsh -File tools/run-sim-tests.ps1 -Port COM8` for deterministic checks on the actual MCU using the production solver. The script temporarily uploads a test build, captures PASS/FAIL output, and restores the regular firmware in `finally`, including after a failed assertion. Close other serial monitors first. USB serial re-enumeration and DTR are handled by the runner.
 
 Run `pwsh -File tools/run-sim-tests.ps1 -Port COM8 -CheckMapping` for the interactive logical-bottom and logical-left LED-edge check. Answer which physical edge lights up. This diagnoses mounting; it is not a required startup calibration.

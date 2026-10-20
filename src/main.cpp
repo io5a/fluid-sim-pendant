@@ -54,7 +54,7 @@ constexpr uint32_t IdleSampleIntervalMs = 40;
 constexpr uint32_t DebugPrintIntervalMs = 250;
 constexpr uint32_t FpsWindowMs = 1000;
 constexpr uint32_t ShakeCooldownMs = 1200;
-constexpr float HardShakeThresholdG = 2.00f;
+constexpr float HardShakeThresholdG = 5.00f;
 constexpr float ShakeReleaseThresholdG = 0.20f;
 constexpr uint8_t LedBrightness = 5;
 
